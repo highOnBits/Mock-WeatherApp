@@ -19,9 +19,6 @@ class res2:
     def __init__(self, temp):
         self.temp = temp
 
-
-_weatherAppAPIKey = "00fb473d7cc86e744ce221e1022171b4"
-
 app = Flask(__name__)
 
 
@@ -35,16 +32,10 @@ def index():
     if not city:
         return "Internal Server Error", 500
 
-    unit = args.get("units")
-    appid = args.get("appid")
-    tempResponse = "{'main': { 'temp': 39.7}}"
     tempRes2 = res2(38.9)
     tempResponse = res(tempRes2)
-    # response = requests.get("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + _weatherAppAPIKey)
     return tempResponse.toJSON()
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
-
-    # host="localhost", port="3000",
+    app.run()
